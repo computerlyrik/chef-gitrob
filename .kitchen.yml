@@ -6,10 +6,17 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: debian-7.7
+    run_list: apt
+
 
 suites:
   - name: default
-    run_list:
+    run_list: gitrob
     attributes:
+      postgresql:
+        password:
+          postgres: 'somepassword'
+      gitrob:
+        database:
+          password: 'anotherpassword'
